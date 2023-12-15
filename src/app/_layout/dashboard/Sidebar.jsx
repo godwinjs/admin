@@ -9,7 +9,7 @@ const Sidebar = () => {
   const router = useRouter();
   return (
     <>
-      <section className="lg:col-span-2 md:col-span-1 col-span-1 bg-gray-100/70 shadow lg:p-4 md:p-4 p-2 rounded-lg">
+      <section className="lg:col-span-2 md:col-span-3 col-span-3 bg-gray-100/70 shadow lg:p-4 md:p-4 p-2 rounded-lg">
         <ul className="flex gap-y-4  flex-col h-full">
           <li className="font-medium text-lg overflow-hidden text-ellipsis whitespace-nowrap flex gap-x-2 items-center">
             <HiChartPie className="lg:h-6 md:h-10 h-8 lg:w-6 md:w-10 w-8 lg:mx-0 md:mx-auto" />{" "}
