@@ -31,7 +31,7 @@ const Signup = () => {
     useUploadPhotoMutation();
 
   // user credentials from state
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => { state.auth ? state.auth : { user: '' } });
   const router = useRouter();
 
   useEffect(() => {
