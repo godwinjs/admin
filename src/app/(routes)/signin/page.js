@@ -22,7 +22,7 @@ const Signin = () => {
     useSigninMutation();
 
   // user credentials from state
-  const { user } = useSelector((state) => { state.auth ? state.auth : { user: '' } });
+  const { user } = useSelector((state) => state.auth);
   const router = useRouter();
 
   useEffect(() => {

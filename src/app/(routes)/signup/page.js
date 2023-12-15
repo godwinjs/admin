@@ -31,7 +31,7 @@ const Signup = () => {
     useUploadPhotoMutation();
 
   // user credentials from state
-  const { user } = useSelector((state) => { state.auth ? state.auth : { user: '' } });
+  const { user } = useSelector((state) => state.auth);
   const router = useRouter();
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const Signup = () => {
           <p className="mt-2 text-center text-sm text-gray-600 max-w">
             Already registered?
             <Link
-              to="/sign-in"
+              href="/sign-in"
               className="font-medium text-indigo-600 hover:text-indigo-500 ml-1"
             >
               Sign in
@@ -327,7 +327,7 @@ const Signup = () => {
                 </label>
                 <div className="mt-1 flex">
                   <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
-                    +880
+                    +234
                   </span>
                   <input
                     id="phone"
