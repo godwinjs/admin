@@ -143,7 +143,7 @@ const ListUser = () => {
                             {status}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                            {dob.split("T")[0].split("-").reverse().join("/")}
+                            {dob?.split("T")[0].split("-").reverse().join("/")}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                             {cart?.length}
