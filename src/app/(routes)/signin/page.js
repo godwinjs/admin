@@ -17,7 +17,7 @@ const Signin = () => {
     formState: { errors }, 
   } = useForm();
 
-  // server side credentials
+  // server side credential
   const [signin, { isLoading: logging, isSuccess: logged }] =
     useSigninMutation();
 
