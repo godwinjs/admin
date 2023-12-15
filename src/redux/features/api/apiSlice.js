@@ -1,13 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-let url = process.env.NEXT_PUBLIC_SERVER_APP_BASE_URL;
-if(process.env.NODE_ENV === "production") url = process.env.TS_SERVER_URL;
+let url = (process.env.NODE_ENV !== "development") ? process.env.NEXT_PUBLIC_TS_SERVER_URL : process.env.NEXT_PUBLIC_SERVER_APP_BASE_URL;
 
-console.log(url)
 const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://tsserver-sage.vercel.app/',
+    baseUrl: url,
   }),
   tagTypes: [
     "Photo",
