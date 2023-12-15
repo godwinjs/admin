@@ -334,7 +334,7 @@ const Signup = () => {
                     name="phone"
                     type="tel"
                     autoComplete="off"
-                    placeholder="i.e.: +8801xxxxxxxxx"
+                    placeholder="i.e.: +234xxxxxxxxx"
                     maxLength="10"
                     {...register("phone", { required: true })}
                     className={`w-full form-input rounded-r-md ${
