@@ -7,7 +7,7 @@ console.log(url)
 const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: url,
+    baseUrl: 'https://tsserver-sage.vercel.app/',
   }),
   tagTypes: [
     "Photo",
