@@ -21,7 +21,7 @@ const Signin = () => {
   const [signin, { isLoading: logging, isSuccess: logged }] =
     useSigninMutation();
 
-  // user credentials from state
+  // user credential from state
   const { user } = useSelector((state) => state.auth);
   const router = useRouter();
 
