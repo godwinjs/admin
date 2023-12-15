@@ -39,20 +39,20 @@ app.use("/api/store", storeRoute);
 app.use(error);
 
 /* connection establishment */
-// app.get("/", (req, res, next) => {
-//   try {
-//     res.status(200).json({
-//       acknowledgement: true,
-//       message: "OK",
-//       description: "The request is OK and fetch successful request",
-//       data: "Truthstores E-Commerce server connection establish successfully",
-//     });
-//   } catch (err) {
-//     next(err);
-//   } finally {
-//     console.log(`URL: ${req.url} || Method: ${req.method}`);
-//   }
-// });
+app.get("/", (req, res, next) => {
+  try {
+    res.status(200).json({
+      acknowledgement: true,
+      message: "OK",
+      description: "The request is OK and fetch successful request",
+      data: "Truthstores E-Commerce server connection establish successfully",
+    });
+  } catch (err) {
+    next(err);
+  } finally {
+    console.log(`URL: ${req.url} || Method: ${req.method}`);
+  }
+});
 
 /* export application */
 module.exports = app;

@@ -1,24 +1,24 @@
 // const express = require('express');
-const next = require('next');
+// const next = require('next');
 /* external import */
 const mongoose = require("mongoose");
 
 /* internal imports */
-const app = require("./server/app");
-const consoleMessage = require("./server/utils/console.util");
+const app = require("./app");
+const consoleMessage = require("./utils/console.util");
 
 /* Constants and Vars */
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
-const nextApp = next({dev})
-const handle = nextApp.getRequestHandler()
+// const nextApp = next({dev})
+// const handle = nextApp.getRequestHandler()
 
 /* database connection */
-nextApp.prepare().then(() => {
+// nextApp.prepare().then(() => {
     /** */
-    app.get('*', (req, res) => {
-      return handle(req, res)
-    })
+    // app.get('*', (req, res) => {
+    //   return handle(req, res)
+    // })
   mongoose.set("strictQuery", false);
   mongoose
     .connect(process.env.ATLAS_URI, {
@@ -32,13 +32,11 @@ nextApp.prepare().then(() => {
   app.listen(port, (err) => {
     if (err) throw err;
     consoleMessage.successMessage(`App listening on ${process.env.PORT}.`);
-
-
   });
-}).catch((ex) => {
-  // console.error(ex.stack)
-  // process.exit(1)
-  console.log('error starting server')
-})
+// }).catch((ex) => {
+//   // console.error(ex.stack)
+//   // process.exit(1)
+//   console.log('error starting server')
+// })
 
 
