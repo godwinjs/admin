@@ -8,6 +8,7 @@ const app = require("./server/app");
 const consoleMessage = require("./server/utils/console.util");
 
 /* Constants and Vars */
+const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({dev})
 const handle = nextApp.getRequestHandler()
@@ -28,7 +29,7 @@ nextApp.prepare().then(() => {
     // 
 
   /* establish server port */
-  app.listen(process.env.PORT, (err) => {
+  app.listen(port, (err) => {
     if (err) throw err;
     consoleMessage.successMessage(`App listening on ${process.env.PORT}.`);
 
