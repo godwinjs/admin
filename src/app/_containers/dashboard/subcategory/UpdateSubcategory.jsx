@@ -12,8 +12,8 @@ import { useUpdatePhotoMutation } from "../../../../redux/features/update/update
 
 import DashboardLoading from "../../../_components/loading/DashboardLoading";
 
-const UpdateSubcategory = () => {
-  const { scid } = useParams();
+const UpdateSubcategory = ({id, url}) => {
+  const scid = id;
   const { data: displaySubcategory, isLoading: displayingSubcategories } =
     useDisplaySubcategoryQuery(scid);
   const router = useRouter();
@@ -81,7 +81,7 @@ const UpdateSubcategory = () => {
           <div className="w-full mb-4">
             <button
               className="flex items-center btn-primary text-lg font-bold"
-              onClick={() => router.push(-1)}
+              onClick={() => router.back()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

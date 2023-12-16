@@ -2,16 +2,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter, useParams } from "next/navigation";
+import { useForm } from "react-hook-form";
+
 import {
   useDisplayCategoryQuery,
   useUpdateCategoryMutation,
-} from "../../../features/category/categoryApi";
-import { useForm } from "react-hook-form";
-import { useUpdatePhotoMutation } from "../../../features/update/updateApi";
-import DashboardLoading from "../../../components/loading/DashboardLoading";
+} from "../../../../redux/features/category/categoryApi";
+import { useUpdatePhotoMutation } from "../../../../redux/features/update/updateApi";
 
-const UpdateCategory = () => {
-  const { cid } = useParams();
+import DashboardLoading from "../../../_components/loading/DashboardLoading";
+
+const UpdateCategory = ({id}) => {
+  const cid = id;
   const { data: displayCategory, isLoading: displayingCategories } =
     useDisplayCategoryQuery(cid);
   const router = useRouter();
@@ -80,7 +82,7 @@ const UpdateCategory = () => {
           <div className="w-full mb-4">
             <button
               className="flex items-center btn-primary text-lg font-bold"
-              onClick={() => router.push(-1)}
+              onClick={() => router.back()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

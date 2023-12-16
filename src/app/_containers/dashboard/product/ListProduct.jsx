@@ -153,7 +153,7 @@ const ListProduct = () => {
                               <>
                                 <Link
                                   className="text-green-500 hover:text-green-700"
-                                  href={`/dashboard/update-product/${_id}`}
+                                  href={`/update-product/${_id}`}
                                 >
                                   Update
                                 </Link>

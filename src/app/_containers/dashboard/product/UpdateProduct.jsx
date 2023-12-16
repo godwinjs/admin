@@ -3,21 +3,24 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useRouter, useParams } from "next/navigation";
+
 import {
   useDisplayProductQuery,
   useUpdateProductMutation,
-} from "../../../features/product/productApi";
+} from "../../../../redux/features/product/productApi";
 import {
   useUpdateGalleryMutation,
   useUpdatePhotoMutation,
-} from "../../../features/update/updateApi";
-import DashboardLoading from "../../../components/loading/DashboardLoading";
-import { useDisplaySubcategoriesQuery } from "../../../features/subcategory/subcategoryApi";
-import { useDisplayBrandsQuery } from "../../../features/brand/brandApi";
-import { useDisplayStoresQuery } from "../../../features/store/storeApi";
+} from "../../../../redux/features/update/updateApi";
 
-const UpdateProduct = () => {
-  const { pid } = useParams();
+import { useDisplaySubcategoriesQuery } from "../../../../redux/features/subcategory/subcategoryApi";
+import { useDisplayBrandsQuery } from "../../../../redux/features/brand/brandApi";
+import { useDisplayStoresQuery } from "../../../../redux/features/store/storeApi";
+
+import DashboardLoading from "../../../_components/loading/DashboardLoading";
+
+const UpdateProduct = ({id}) => {
+  const pid = id;
   const { data: displayProduct, isLoading: displayingProducts } =
     useDisplayProductQuery(pid);
   const router = useRouter();
@@ -131,7 +134,7 @@ const UpdateProduct = () => {
           <div className="w-full mb-4">
             <button
               className="flex items-center btn-primary text-lg font-bold"
-              onClick={() => router.push(-1)}
+              onClick={() => router.back()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

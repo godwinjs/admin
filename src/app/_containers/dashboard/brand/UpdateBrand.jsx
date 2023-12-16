@@ -11,10 +11,10 @@ import {
 } from "../../../../redux/features/brand/brandApi";
 import { useUpdatePhotoMutation } from "../../../../redux/features/update/updateApi";
 
-import DashboardLoading from "../../../components/loading/DashboardLoading";
+import DashboardLoading from "../../../_components/loading/DashboardLoading";
 
-const UpdateBrand = () => {
-  const { bid } = useParams();
+const UpdateBrand = ({id}) => {
+  const bid = id;
   const { data: displayBrand, isLoading: displayingBrand } =
     useDisplayBrandQuery(bid);
   const router = useRouter();
@@ -77,7 +77,7 @@ const UpdateBrand = () => {
           <div className="w-full mb-4">
             <button
               className="flex items-center btn-primary text-lg font-bold"
-              onClick={() => router.push(-1)}
+              onClick={() => router.back()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

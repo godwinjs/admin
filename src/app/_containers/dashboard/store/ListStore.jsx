@@ -127,7 +127,7 @@ const ListStore = () => {
                               <>
                                 <Link
                                   className="text-green-500 hover:text-green-700"
-                                  href={`/dashboard/update-store/${_id}`}
+                                  href={`/update-store/${_id}`}
                                 >
                                   Update
                                 </Link>

@@ -138,7 +138,7 @@ const ListBrand = () => {
                               <>
                                 <Link
                                   className="text-green-500 hover:text-green-700"
-                                  href={`/dashboard/update-brand/${_id}`}
+                                  href={`/update-brand/${_id}`}
                                 >
                                   Update
                                 </Link>

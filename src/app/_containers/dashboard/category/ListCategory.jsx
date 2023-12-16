@@ -141,7 +141,7 @@ const ListCategory = () => {
                               <>
                                 <Link
                                   className="text-green-500 hover:text-green-700"
-                                  href={`/dashboard/update-category/${_id}`}
+                                  href={`/update-category/${_id}`}
                                 >
                                   Update
                                 </Link>
