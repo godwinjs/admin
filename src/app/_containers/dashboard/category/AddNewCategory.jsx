@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 import { useUploadPhotoMutation } from "../../../../redux/features/upload/uploadApi";
 import { useCreateCategoryMutation } from "../../../../redux/features/category/categoryApi";
 
 const AddNewCategory = () => {
+  const router = useRouter();
   // react hook form credentials
   const {
     register,
@@ -35,6 +37,7 @@ const AddNewCategory = () => {
     data.thumbnail = photo;
     createCategory(data);
     reset();
+    router.refresh();
   };
 
   return (
@@ -174,7 +177,7 @@ const AddNewCategory = () => {
                   autoComplete="off"
                   placeholder="Separate by , or ⎵"
                   {...register("tags", { required: false })}
-                  className={`border-transparent focus:border-transparent focus:ring-transparent rounded-md`}
+                  className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md`}
                   onKeyUp={(event) => {
                     if (event.which === 188 || event.which === 32) {
                       const tagValue = event.target.value.replace(",", "");
@@ -319,33 +322,7 @@ const AddNewCategory = () => {
       </form>
 
       {/* category alert */}
-      <section className="md:col-span-5 col-span-12 h-full w-full rounded-md shadow p-4">
-        <div className="h-full w-full flex justify-center items-center text-lg">
-          <div
-            className="flex p-4 text-sm text-yellow-800 rounded-lg bg-yellow-500"
-            role="alert"
-          >
-            <svg
-              aria-hidden="true"
-              className="flex-shrink-0 inline w-5 h-5 mr-3"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-            <span className="sr-only">Info</span>
-            <div>
-              <span className="font-medium">Refresh alert!</span> Please,
-              refresh the page after creating each category.
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* <ReloadAlert /> */}
     </section>
   );
 };

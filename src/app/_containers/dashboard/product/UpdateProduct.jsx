@@ -123,6 +123,7 @@ const UpdateProduct = ({id}) => {
 
     const { productTags: _, ...productData } = data;
     updateProduct({ pid: pid, productData });
+    router.refresh();
   };
 
   return (
@@ -384,12 +385,13 @@ const UpdateProduct = ({id}) => {
                         name="subcategory"
                         {...register("subcategory", { required: true })}
                         className="w-full form-select rounded-md"
+                        defaultValue={subcategory?.title}
                       >
                         {subcategories.map((sc) => (
                           <option
                             key={sc?._id}
                             value={sc?._id}
-                            selected={sc?._id === subcategory?._id}
+                            // selected={sc?._id === subcategory?._id}
                           >
                             {sc?.title}
                           </option>
@@ -441,12 +443,13 @@ const UpdateProduct = ({id}) => {
                         name="brand"
                         {...register("brand", { required: true })}
                         className="w-full form-select rounded-md"
+                        defaultValue={brand?.title}
                       >
                         {brands.map((br) => (
                           <option
                             key={br?._id}
                             value={br?._id}
-                            selected={br?._id === brand?._id}
+                            // selected={br?._id === brand?._id}
                           >
                             {br?.title}
                           </option>
@@ -498,12 +501,13 @@ const UpdateProduct = ({id}) => {
                         name="store"
                         {...register("store", { required: true })}
                         className="w-full form-select rounded-md"
+                        defaultValue={store?.title}
                       >
                         {stores.map((st) => (
                           <option
                             key={st?._id}
                             value={st?._id}
-                            selected={st?._id === store?._id}
+                            // selected={st?._id === store?._id}
                           >
                             {st?.title}
                           </option>
@@ -748,33 +752,7 @@ const UpdateProduct = ({id}) => {
             </form>
 
             {/* preview pan for near future */}
-            <section className="md:col-span-5 col-span-12 h-full w-full rounded-md shadow p-4">
-              <div className="h-full w-full flex justify-center items-center text-lg">
-                <div
-                  className="flex p-4 text-sm text-yellow-800 rounded-lg bg-yellow-500"
-                  role="alert"
-                >
-                  <svg
-                    aria-hidden="true"
-                    className="flex-shrink-0 inline w-5 h-5 mr-3"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="sr-only">Info</span>
-                  <div>
-                    <span className="font-medium">Refresh alert!</span> Please,
-                    refresh the page after update this product.
-                  </div>
-                </div>
-              </div>
-            </section>
+            {/* <ReloadAlert /> */}
           </section>
         </>
       )}

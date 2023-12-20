@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter, useParams } from "next/navigation";
@@ -51,7 +52,7 @@ const UpdateCategory = ({id}) => {
   const removeTag = (selectedTag) => {
     setCategoryTags(categoryTags.filter((tag) => tag !== selectedTag));
   };
-
+  const params = useParams();
   useEffect(() => {
     reset({
       title,
@@ -71,6 +72,7 @@ const UpdateCategory = ({id}) => {
 
     const { categoryTags: _, ...categoryData } = data;
     updateCategory({ cid: cid, categoryData });
+    router.refresh(params)
   };
 
   return (

@@ -1,58 +1,58 @@
-const iconStyle = "lg:h-4 md:h-10 h-8 lg:w-4 md:w-10 w-8 lg:mx-0 md:mx-auto";
+const iconStyle = "lg:h-4 md:h-10 m-h-8 h-10 lg:w-4 md:w-10 w-8 min-w-sm lg:mx-0 md:mx-auto";
 
 const dashboardRoutes = [
   {
-    icon: <Category className={iconStyle} />,
+    icon: <Category width="20" height="20" className={iconStyle} />,
     name: "Add New Category",
     anchor: "add-new-category",
   },
   {
-    icon: <List className={iconStyle} />,
+    icon: <List width="20" height="20" className={iconStyle} />,
     name: "List Category",
     anchor: "list-category",
   },
   {
-    icon: <Subcategory className={iconStyle} />,
+    icon: <Subcategory width="20" height="20" className={iconStyle} />,
     name: "Add New Subcategory",
     anchor: "add-new-subcategory",
   },
   {
-    icon: <List className={iconStyle} />,
+    icon: <List width="20" height="20" className={iconStyle} />,
     name: "List Subcategory",
     anchor: "list-subcategory",
   },
   {
-    icon: <Brand className={iconStyle} />,
+    icon: <Brand width="20" height="20" className={iconStyle} />,
     name: "Add New Brand",
     anchor: "add-new-brand",
   },
   {
-    icon: <List className={iconStyle} />,
+    icon: <List width="20" height="20" className={iconStyle} />,
     name: "List Brand",
     anchor: "list-brand",
   },
   {
-    icon: <Store className={iconStyle} />,
+    icon: <Store width="20" height="20" className={iconStyle} />,
     name: "Add New Store",
     anchor: "add-new-store",
   },
   {
-    icon: <List className={iconStyle} />,
+    icon: <List width="20" height="20" className={iconStyle} />,
     name: "List Store",
     anchor: "list-store",
   },
   {
-    icon: <Product className={iconStyle} />,
+    icon: <Product width="20" height="20" className={iconStyle} />,
     name: "Add New Product",
     anchor: "add-new-product",
   },
   {
-    icon: <List className={iconStyle} />,
+    icon: <List width="20" height="20" className={iconStyle} />,
     name: "List Product",
     anchor: "list-product",
   },
   {
-    icon: <User className={iconStyle} />,
+    icon: <User width="20" height="20" className={iconStyle} />,
     name: "List User",
     anchor: "list-user",
   },
@@ -63,8 +63,6 @@ function Product(props) {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
       fill="currentColor"
       className="bi bi-bag-fill"
       viewBox="0 0 16 16"
@@ -79,8 +77,6 @@ function Category(props) {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
       fill="currentColor"
       className="bi bi-stack"
       viewBox="0 0 16 16"
@@ -96,8 +92,6 @@ function Subcategory(props) {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
       fill="currentColor"
       className="bi bi-layers-fill"
       viewBox="0 0 16 16"
@@ -113,8 +107,6 @@ function Store(props) {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
       fill="currentColor"
       className="bi bi-shop"
       viewBox="0 0 16 16"
@@ -129,8 +121,6 @@ function Brand(props) {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
       fill="currentColor"
       className="bi bi-tag-fill"
       viewBox="0 0 16 16"
@@ -145,8 +135,6 @@ function User(props) {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
       fill="currentColor"
       className="bi bi-people-fill"
       viewBox="0 0 16 16"
@@ -161,8 +149,6 @@ function List(porps) {
     <svg
       {...porps}
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
       fill="currentColor"
       className="bi bi-list-stars"
       viewBox="0 0 16 16"

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 import {
@@ -15,7 +16,7 @@ const ListProduct = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
-  const { data: productsData, isLoading: displayingProducts } =
+  const { data: productsData, isLoading: displayingProducts, refetch  } =
     useDisplayProductsQuery({
       page,
       limit,
@@ -25,6 +26,10 @@ const ListProduct = () => {
 
   const products = productsData?.data || [];
   const count = productsData?.count || 0;
+  useEffect(() => {
+    refetch()
+  }, [])
+  console.log(products)
 
   return (
     <>

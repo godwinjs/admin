@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   photo: {},
   gallery: [],
+  // variantThumbnail: {},
+  // featuredImage: {}
 };
 
 const uploadSlice = createSlice({
@@ -15,6 +17,12 @@ const uploadSlice = createSlice({
     setGallery: (state, action) => {
       state.gallery = action.payload;
     },
+    // setVariantThumbnail: () => {
+    //   state.variantThumbnail = action.payload
+    // },
+    // setVariantFeaturedImage: () => {
+    //   state.variantFeaturedImage = action.payload
+    // }
   },
 });
 
