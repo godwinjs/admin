@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 import { useUploadPhotoMutation } from "../../../../redux/features/upload/uploadApi";
 import { useCreateCategoryMutation } from "../../../../redux/features/category/categoryApi";
@@ -43,9 +44,10 @@ const AddNewCategory = () => {
     data.thumbnail = photo;
     createCategory(data);
     reset();
+    toast.success(`${data.title} Category Added`);
     
     //still handle when there's an error
-    setTimeout( () => setIsReload(true), 2000);
+    setTimeout( () => setIsReload(true), 3000);
   };
 
   return (

@@ -131,7 +131,7 @@ const UpdateProduct = ({id}) => {
     updateProduct({ pid: pid, productData });
     toast.success(`${data.title} Product Updated`);
     //still handle when there's an error
-    setTimeout( () => setIsReload(true), 2000);
+    setTimeout( () => setIsReload(true), 3000);
   };
 
   return (

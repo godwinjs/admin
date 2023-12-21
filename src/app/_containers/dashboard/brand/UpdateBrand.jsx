@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 import {
   useDisplayBrandQuery,
@@ -71,8 +72,9 @@ const UpdateBrand = ({id}) => {
     data.logo = Object.keys(photo)?.length ? photo : logo;
 
     updateBrand({ bid, brandData: data });
+    toast.success(`${data.title} Brand Updated`);
     //still handle when there's an error
-    setTimeout( () => setIsReload(true), 2000);
+    setTimeout( () => setIsReload(true), 3000);
   };
 
   return (

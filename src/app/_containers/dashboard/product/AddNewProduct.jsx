@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useCreateProductMutation } from "../../../../redux/features/product/productApi";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 import {
   useUploadGalleryMutation,
@@ -75,9 +76,10 @@ const AddNewProduct = () => {
     data.allOfSizes = allOfSizes;
     createProduct(data);
     reset();
+    toast.success(`${data.title} Product Added`);
     
     //still handle when there's an error
-    setTimeout( () => setIsReload(true), 2000);
+    setTimeout( () => setIsReload(true), 3000);
   };
 
   return (

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter, useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 import {
   useDisplayCategoryQuery,
@@ -76,8 +77,9 @@ const UpdateCategory = ({id}) => {
 
     const { categoryTags: _, ...categoryData } = data;
     updateCategory({ cid: cid, categoryData });
+    toast.success(`${data.title} Category Updated`);
     //still handle when there's an error
-    setTimeout( () => setIsReload(true), 2000);
+    setTimeout( () => setIsReload(true), 3000);
   };
 
   return (

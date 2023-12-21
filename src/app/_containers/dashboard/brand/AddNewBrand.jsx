@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+
 import { useCreateBrandMutation } from "../../../../redux/features/brand/brandApi";
 import { useUploadPhotoMutation } from "../../../../redux/features/upload/uploadApi";
 import { useSelector } from "react-redux";
@@ -34,6 +36,7 @@ const AddNewBrand = () => {
     data.logo = photo;
     createBrand(data);
     reset();
+    toast.success(`${data.title} SubCategory Updated`);
     
     //still handle when there's an error
     setTimeout( () => setIsReload(true), 2000);
