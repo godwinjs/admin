@@ -53,12 +53,12 @@ const Sidebar = ({toggleMenu, isOpen}) => {
           {/* redirect to home route */}
           <li className="mt-auto">
             <Link
-              href="/"
+              href={`${process.env.NEXT_PUBLIC_HOME_URL}`}
               className="overflow-hidden text-ellipsis whitespace-nowrap flex gap-x-1 items-center hover:underline"
             >
               <HiHome width="20" height="20" className="lg:h-5 md:h-10 h-8 lg:w-5 md:w-10 w-8 lg:mx-0 md:mx-auto" />
               <span className={`${isOpen ? 'inline-block' : 'hidden'} lg:inline-block`}>{" "}</span>
-              <span className={`${isOpen ? 'inline-block' : 'hidden'}transition-all lg:inline-block cursor-pointer text-xs lg:text-lg`}>Back to Home</span>
+              <span className={`${isOpen ? 'inline-block' : 'hidden'} transition-all lg:inline-block cursor-pointer text-xs lg:text-lg`}>Back to Home</span>
             </Link>
           </li>
         </ul>
