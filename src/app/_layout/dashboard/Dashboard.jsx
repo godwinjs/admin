@@ -7,7 +7,6 @@ const Dashboard = ({children}) => {
   const toggleMenu = () => {
       setIsOpen(!isOpen)
   }
-  isOpen ? console.log('open menu') : console.log('close menu')
   
   return (
     <>

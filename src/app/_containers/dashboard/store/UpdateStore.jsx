@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter, useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 import {
   useDisplayStoreQuery,
@@ -50,6 +51,7 @@ const UpdateStore = ({id}) => {
   const removeTag = (selectedTag) => {
     setStoreTags(storeTags.filter((tag) => tag !== selectedTag));
   };
+  const [ isReload, setIsReload ] = useState(false);
 
   useEffect(() => {
     reset({
@@ -60,7 +62,10 @@ const UpdateStore = ({id}) => {
       thumbnail,
     });
     setStoreTags(tags);
-  }, [reset, title, description, seller, tags, thumbnail]);
+    if(isReload){
+      window.location.reload()
+    }
+  }, [reset, title, description, seller, tags, thumbnail, isReload]);
 
   // submit add store form
   const handleAddStoreForm = (data) => {
@@ -70,7 +75,9 @@ const UpdateStore = ({id}) => {
 
     const { storeTags: _, ...storeData } = data;
     updateStore({ sid, storeData });
-    router.refresh();
+    toast.success(`${data.title} store Updated`);
+    //still handle when there's an error
+    setTimeout( () => setIsReload(true), 3000);
   };
 
   return (

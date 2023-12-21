@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -16,6 +16,12 @@ const AddNewCategory = () => {
     formState: { errors },
     reset,
   } = useForm();
+  const [ isReload, setIsReload ] = useState(false);
+  useEffect(() => {
+    if(isReload){
+      window.location.reload();
+    }
+  }, [isReload])
 
   // server side credentials
   const [createCategory, { isLoading: categoryCreating }] =
@@ -37,7 +43,9 @@ const AddNewCategory = () => {
     data.thumbnail = photo;
     createCategory(data);
     reset();
-    router.refresh();
+    
+    //still handle when there's an error
+    setTimeout( () => setIsReload(true), 2000);
   };
 
   return (

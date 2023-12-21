@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 import { useCreateStoreMutation } from "../../../../redux/features/store/storeApi";
 import { useUploadPhotoMutation } from "../../../../redux/features/upload/uploadApi";
@@ -18,6 +19,7 @@ const AddNewStore = () => {
     reset,
   } = useForm();
 
+
   // server side credentials
   const [createStore, { isLoading: storeStore }] = useCreateStoreMutation();
   const [uploadStoreThumbnail, { isLoading: thumbnailUploading }] =
@@ -30,6 +32,13 @@ const AddNewStore = () => {
   const removeTag = (selectedTag) => {
     setTags(tags.filter((tag) => tag !== selectedTag));
   };
+  
+  const [ isReload, setIsReload ] = useState(false);
+  useEffect(() => {
+    if(isReload){
+      window.location.reload();
+    }
+  }, [isReload])
 
   // submit add store form
   const handleAddStoreForm = (data) => {
@@ -38,7 +47,9 @@ const AddNewStore = () => {
     data.thumbnail = photo;
     createStore(data);
     reset();
-    router.refresh();
+    toast.success(`${data.title} Store Added`);
+    //still handle when there's an error
+    setTimeout( () => setIsReload(true), 2000);
   };
 
   return (

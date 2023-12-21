@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useCreateProductMutation } from "../../../../redux/features/product/productApi";
 import { useSelector } from "react-redux";
@@ -49,6 +49,12 @@ const AddNewProduct = () => {
   const { photo, gallery } = useSelector((state) => state.upload);
   const [tags, setTags] = useState([]);
   const [allOfSizes, setAllOfSizes] = useState([]);
+  const [ isReload, setIsReload ] = useState(false);
+  useEffect(() => {
+    if(isReload){
+      window.location.reload();
+    }
+  }, [isReload])
 
 
   const remove = (type, selectedTag) => {
@@ -69,7 +75,9 @@ const AddNewProduct = () => {
     data.allOfSizes = allOfSizes;
     createProduct(data);
     reset();
-    router.refresh();
+    
+    //still handle when there's an error
+    setTimeout( () => setIsReload(true), 2000);
   };
 
   return (

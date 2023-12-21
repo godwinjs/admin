@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
 import {
   useDisplaySubcategoryQuery,
@@ -47,6 +48,7 @@ const UpdateSubcategory = ({id, url}) => {
   // upload credentials from state
   const { photo } = useSelector((state) => state.update);
   const [subcategoryTags, setSubcategoryTags] = useState([]);
+  const [ isReload, setIsReload ] = useState(false);
 
   const removeTag = (selectedTag) => {
     setSubcategoryTags(subcategoryTags.filter((tag) => tag !== selectedTag));
@@ -61,7 +63,10 @@ const UpdateSubcategory = ({id, url}) => {
       thumbnail,
     });
     setSubcategoryTags(tags);
-  }, [reset, title, description, category, tags, thumbnail]);
+    if(isReload){
+      window.location.reload()
+    }
+  }, [reset, title, description, category, tags, thumbnail, isReload]);
 
   // submit add category form
   const handleAddSubcategoryForm = (data) => {
@@ -70,7 +75,31 @@ const UpdateSubcategory = ({id, url}) => {
 
     const { subcategoryTags: _, ...subcategoryData } = data;
     updateCategory({ sid: scid, subcategoryData });
-    router.refresh();
+    // toast.success(`${data.title} SubCategory Updated`);
+    toast.custom(
+      (t) => (
+        <Transition
+          appear
+          show={t.visible}
+          className="p-4 max-w-md w-full bg-white dark:bg-slate-800 shadow-lg rounded-2xl pointer-events-auto ring-1 ring-black/5 dark:ring-white/10 text-slate-900 dark:text-slate-200"
+          enter="transition-all duration-150"
+          enterFrom="opacity-0 translate-x-20"
+          enterTo="opacity-100 translate-x-0"
+          leave="transition-all duration-150"
+          leaveFrom="opacity-100 translate-x-0"
+          leaveTo="opacity-0 translate-x-20"
+        >
+          <p className="block text-base font-semibold leading-none">
+            {`${data.title} SubCategory Updated`}
+          </p>
+          <div className="border-t border-slate-200 dark:border-slate-700 my-4" />
+          {/* render */}
+        </Transition>
+      ),
+      { position: "top-right", id: "nc-product-notify", duration: 3000 }
+    );
+    //still handle when there's an error
+    setTimeout( () => setIsReload(true), 2000);
   };
 
   return (

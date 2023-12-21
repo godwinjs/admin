@@ -9,7 +9,6 @@ import dashboardRoutes from "./dashboardRoutes";
 const Sidebar = ({toggleMenu, isOpen}) => {
   const pathname = usePathname();
   const router = useRouter();
-  console.log(isOpen)
   
   return (
     <>
@@ -18,7 +17,7 @@ const Sidebar = ({toggleMenu, isOpen}) => {
         {/* gap-y-4 */}
         <ul className="flex flex-col h-full gap-y-1">
           <li onClick={toggleMenu} className="transition-all mb-4 lg:hidden font-medium text-xs overflow-hidden text-ellipsis whitespace-nowrap">
-            {isOpen ? <Cancel width="20" height="20" className={`lg:h-6 md:h-10 m-h-8 lg:w-6 md:w-10 w-8 lg:mx-0 transition-all ${isOpen && 'ml-auto'}`} />  : <Menu width="20" height="20" className={`transition-all lg:h-6 md:h-10 m-h-8 lg:w-6 md:w-10 w-8 lg:mx-0 ${isOpen && 'ml-auto'}`} />}
+            {isOpen ? <Cancel width="20" height="20" className={`lg:h-6 md:h-10 m-h-8 lg:w-6 md:w-10 w-8 lg:mx-0 transition-all ${isOpen ? 'ml-auto' : ''}`} />  : <Menu width="20" height="20" className={`transition-all lg:h-6 md:h-10 m-h-8 lg:w-6 md:w-10 w-8 lg:mx-0 ${isOpen ? 'ml-auto' : ''}'}`} />}
           </li>
           <hr />
           <li onClick={() => router.push("/")} className="transition-all font-medium text-lg overflow-hidden text-ellipsis whitespace-nowrap flex gap-x-2 items-center">
@@ -32,8 +31,9 @@ const Sidebar = ({toggleMenu, isOpen}) => {
           </li>
           <hr />
 
-          {dashboardRoutes.map((dashboardRoute, index) => (
-            <li key={index} onClick={() => router.replace(dashboardRoute.anchor)} className="p-1 rounded-lg">
+          {dashboardRoutes.map((dashboardRoute, index) => {
+            return(
+            <li key={index} onClick={() => router.push(process.env.NEXT_PUBLIC_ORIGIN_URL + dashboardRoute.anchor)} className="p-1 rounded-lg">
               <div
                 className={`overflow-hidden text-ellipsis whitespace-nowrap flex gap-x-2 items-center hover:underline ${
                   pathname.includes(dashboardRoute.anchor)
@@ -48,7 +48,7 @@ const Sidebar = ({toggleMenu, isOpen}) => {
                 </span>
               </div>
             </li>
-          ))}
+          )})}
 
           {/* redirect to home route */}
           <li className="mt-auto">

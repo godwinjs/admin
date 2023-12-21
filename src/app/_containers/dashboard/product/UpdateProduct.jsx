@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 import {
   useDisplayProductQuery,
@@ -85,6 +86,7 @@ const UpdateProduct = ({id}) => {
   const removeTag = (selectedTag) => {
     setProductTags(productTags.filter((tag) => tag !== selectedTag));
   };
+  const [ isReload, setIsReload ] = useState(false);
 
   useEffect(() => {
     setProductTags(tags);
@@ -100,6 +102,9 @@ const UpdateProduct = ({id}) => {
       thumbnail,
       gallery,
     });
+    if(isReload){
+      window.location.reload()
+    }
   }, [
     reset,
     title,
@@ -111,6 +116,7 @@ const UpdateProduct = ({id}) => {
     tags,
     thumbnail,
     gallery,
+    isReload
   ]);
 
   // submit add product form
@@ -123,7 +129,9 @@ const UpdateProduct = ({id}) => {
 
     const { productTags: _, ...productData } = data;
     updateProduct({ pid: pid, productData });
-    router.refresh();
+    toast.success(`${data.title} Product Updated`);
+    //still handle when there's an error
+    setTimeout( () => setIsReload(true), 2000);
   };
 
   return (

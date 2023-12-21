@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 import { useCreateSubcategoryMutation } from "../../../../redux/features/subcategory/subcategoryApi";
 import { useUploadPhotoMutation } from "../../../../redux/features/upload/uploadApi";
@@ -34,6 +35,12 @@ const AddNewSubcategory = () => {
   const removeTag = (selectedTag) => {
     setTags(tags.filter((tag) => tag !== selectedTag));
   };
+  const [ isReload, setIsReload ] = useState(false);
+  useEffect(() => {
+    if(isReload){
+      window.location.reload();
+    }
+  }, [isReload])
 
   // submit add subcategory form
   const handleAddCategoryForm = (data) => {
@@ -41,7 +48,9 @@ const AddNewSubcategory = () => {
     data.thumbnail = photo;
     createSubcategory(data);
     reset();
-    router.refresh()
+    toast.success(`${data.title} SubCategory Added`);
+    //still handle when there's an error
+    setTimeout( () => setIsReload(true), 3000);
   };
 
   return (
