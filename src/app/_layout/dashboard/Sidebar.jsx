@@ -13,7 +13,7 @@ const Sidebar = ({toggleMenu, isOpen}) => {
   return (
     <>
       {/* overflow-x-hidden overflow-y-scroll lg:col-span-2 md:col-span-2 col-span-1 */}
-      <section className={`${isOpen ? 'w-[50%]' : 'w-[10%]'} no-scrollbar overflow-y-scroll lg:w-[25%] md:w-[8%] bg-gray-100/70 shadow lg:p-4 md:p-4 p-2 rounded-lg transition-all`}>
+      <section className={`${isOpen ? 'w-[50%]' : 'w-[10%]'} no-scrollbar overflow-y-scroll ${isOpen ? 'lg:w-[50%]' : 'lg:w-[25%]'} ${isOpen ? 'md:w-[50%]' : 'md:w-[8%]'} bg-gray-100/70 shadow lg:p-4 md:p-4 p-2 rounded-lg transition-all`}>
         {/* gap-y-4 */}
         <ul className="flex flex-col h-full gap-y-1">
           <li onClick={toggleMenu} className="transition-all mb-4 lg:hidden font-medium text-xs overflow-hidden text-ellipsis whitespace-nowrap">
