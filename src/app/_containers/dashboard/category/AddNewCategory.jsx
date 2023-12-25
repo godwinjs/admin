@@ -54,7 +54,8 @@ const AddNewCategory = () => {
     <section className="grid grid-cols-12 gap-8">
       {/* category form */}
       <form
-        className="md:col-span-7 col-span-12"
+      // md:col-span-7
+        className=" col-span-12"
         onSubmit={handleSubmit(handleAddCategoryForm)}
       >
         <div className="grid grid-cols-1 gap-y-4">
