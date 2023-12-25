@@ -162,9 +162,9 @@ const UpdateProduct = ({id}) => {
             </button>
           </div>
           <section className="grid grid-cols-12 gap-8">
-            {/* product form */}
+            {/* product form md:col-span-7 */}
             <form
-              className="md:col-span-7 col-span-12"
+              className="col-span-12"
               onSubmit={handleSubmit(handleAddProductForm)}
             >
               <div className="grid grid-cols-1 gap-y-4">

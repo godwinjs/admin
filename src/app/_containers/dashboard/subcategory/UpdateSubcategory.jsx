@@ -130,9 +130,9 @@ const UpdateSubcategory = ({id, url}) => {
             </button>
           </div>
           <section className="grid grid-cols-12 gap-8">
-            {/* subcategory form */}
+            {/* subcategory form md:col-span-7 */}
             <form
-              className="md:col-span-7 col-span-12"
+              className="col-span-12"
               onSubmit={handleSubmit(handleAddSubcategoryForm)}
             >
               <div className="grid grid-cols-1 gap-y-4">
