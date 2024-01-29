@@ -196,7 +196,7 @@ const UpdateProduct = ({id}) => {
                         autoComplete="off"
                         placeholder="Enter your product title"
                         {...register("title", { maxLength: 100 })}
-                        className={`w-full form-input rounded-md ${
+                        className={`dark:text-gray-700 w-full form-input rounded-md ${
                           watch("title")?.length > 100 &&
                           "focus:border-red-500 focus:ring-1 focus:ring-red-500"
                         }`}
@@ -208,7 +208,7 @@ const UpdateProduct = ({id}) => {
                   <div>
                     <label
                       htmlFor="description"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium dark:text-gray-700"
                     >
                       {errors.description ? (
                         <span className="text-red-500 font-medium">
@@ -233,7 +233,7 @@ const UpdateProduct = ({id}) => {
                         {...register("description", {
                           maxLength: 2000,
                         })}
-                        className={`w-full form-textarea rounded-md ${
+                        className={`w-full form-textarea dark:text-gray-700 rounded-md ${
                           watch("description")?.length > 2000 &&
                           "focus:border-red-500 focus:ring-1 focus:ring-red-500"
                         }`}
