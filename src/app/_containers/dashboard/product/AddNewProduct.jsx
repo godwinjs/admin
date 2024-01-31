@@ -943,7 +943,7 @@ const AddNewProduct = () => {
                 Creating Product...
               </button>
             ) : (
-              <button type="submit" className="w-[30%] p-4 bg-green-200 text-xl">
+              <button type="submit" className="w-[50%] p-4 bg-green-200 lg:text-xl text-xs">
                 Create New Product
               </button>
             )}
