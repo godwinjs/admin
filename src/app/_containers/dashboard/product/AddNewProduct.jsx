@@ -398,11 +398,11 @@ const AddNewProduct = () => {
                       return str.charCodeAt(str.length - 1);
                     }
                     // console.log(e.nativeEvent.key)
-                    window.alert(charCodeAt(e.key))
-                    var kCd = e.key || e.code;
-                    if(kCd == 0 || kCd == 229){
-                      window.alert(kCd)
-                    }
+                    window.alert(e.key)
+                    // var kCd = e.key || e.code;
+                    // if(kCd == 0 || kCd == 229){
+                    //   window.alert(kCd)
+                    // }
 
                     if (e.key === " " || e.key === ",") { //event.which is depreciated
                       const sizesValue = e.target.value.replace(",", "");
