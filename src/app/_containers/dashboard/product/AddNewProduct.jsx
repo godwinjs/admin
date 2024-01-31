@@ -398,10 +398,10 @@ const AddNewProduct = () => {
                       return str.charCodeAt(str.length - 1);
                     }
                     // console.log(e.keyCode)
-                    window.alert(`${e.keyCode}`.charCodeAt(0))
                     // var kCd = e.key || e.code;
                     // if(kCd == 0 || kCd == 229){
-                    //   window.alert(kCd)
+                      window.alert(e.code)
+                      window.alert(`${e.keyCode}`.charCodeAt(`${e.keyCode}` - 1))
                     // }
 
                     if (e.key === " " || e.key === ",") { //event.which is depreciated
