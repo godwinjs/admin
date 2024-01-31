@@ -398,9 +398,9 @@ const AddNewProduct = () => {
                       return str.charCodeAt(str.length - 1);
                     }
                     // console.log(e.nativeEvent.key)
+                    window.alert(charCodeAt(e.key))
                     var kCd = e.key || e.code;
                     if(kCd == 0 || kCd == 229){
-                      kCd = getKeyCode(kCd);
                       window.alert(kCd)
                     }
 
