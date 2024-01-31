@@ -400,8 +400,9 @@ const AddNewProduct = () => {
                     // console.log(e.keyCode)
                     // var kCd = e.key || e.code;
                     // if(kCd == 0 || kCd == 229){
+                      window.alert(e)
                       window.alert(e.code)
-                      window.alert(`${e.keyCode}`.charCodeAt(`${e.keyCode}` - 1))
+                      window.alert(`${e.keyCode}`.charCodeAt(0))
                     // }
 
                     if (e.key === " " || e.key === ",") { //event.which is depreciated
