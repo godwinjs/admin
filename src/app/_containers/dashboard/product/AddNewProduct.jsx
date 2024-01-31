@@ -393,15 +393,17 @@ const AddNewProduct = () => {
                   {...register("allOfSizes", { required: false })}
                   className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md bg-gray-200 p-2`}
                   onKeyDown={(e) => {
+                    
                     var getKeyCode = function (str) {
                       return str.charCodeAt(str.length - 1);
                     }
-                    console.log(e.nativeEvent.key)
+                    // console.log(e.nativeEvent.key)
                     var kCd = e.key || e.code;
                     if(kCd == 0 || kCd == 229){
-                      kCd = getKeyCode(this.value);
+                      kCd = getKeyCode(kCd);
                       window.alert(kCd)
                     }
+
                     if (e.key === " " || e.key === ",") { //event.which is depreciated
                       const sizesValue = e.target.value.replace(",", "");
                       setAllOfSizes([...allOfSizes, sizesValue]);
