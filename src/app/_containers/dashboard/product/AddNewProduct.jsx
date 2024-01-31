@@ -393,7 +393,7 @@ const AddNewProduct = () => {
                   className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md bg-gray-200 p-2`}
                   onKeyUp={(event) => {
                     console.log(event.key === " ")
-                    if (event.key === " " || event.which === 32) { //event.which is depreciated
+                    if (event.key === " " || event.key === ",") { //event.which is depreciated
                       const sizesValue = event.target.value.replace(",", "");
                       setAllOfSizes([...allOfSizes, sizesValue]);
                       event.target.value = "";
