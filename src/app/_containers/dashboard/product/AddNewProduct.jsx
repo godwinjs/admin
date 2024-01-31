@@ -401,7 +401,7 @@ const AddNewProduct = () => {
                     // var kCd = e.key || e.code;
                     // if(kCd == 0 || kCd == 229){
                       // window.alert(e.nativeEvent.key)
-                      window.alert(e.keyCode)
+                      // window.alert(e.keyCode)
                       // window.alert(`${e.keyCode}`.charCodeAt(0))
                       // window.event(e.originalEvent.data)
                     // }
