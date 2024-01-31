@@ -14,6 +14,8 @@ import { useDisplayCategoriesQuery } from "../../../../redux/features/category/c
 import { useDisplayBrandsQuery } from "../../../../redux/features/brand/brandApi";
 import { useDisplayStoresQuery } from "../../../../redux/features/store/storeApi";
 
+import DashboardLoading from "../../../_components/loading/DashboardLoading"
+
 const AddNewProduct = () => {
   const router = useRouter();
   // react hook form credentials
@@ -74,16 +76,18 @@ const AddNewProduct = () => {
     data.thumbnail = photo;
     data.gallery = gallery;
     data.allOfSizes = allOfSizes;
+    // console.log(data)
     createProduct(data);
     reset();
     toast.success(`${data.title} Product Added`);
     
     //still handle when there's an error
-    setTimeout( () => setIsReload(true), 3000);
+    setTimeout( () => setIsReload(true), 2000);
   };
 
-  return (
-    <section className="grid grid-cols-12 gap-8">
+  return ( 
+          <>
+          { isReload ? ( <DashboardLoading /> ) : ( <section className="grid grid-cols-12 gap-8">
       {/* product form md:col-span-7  */}
       <form
         className="col-span-12"
@@ -116,7 +120,7 @@ const AddNewProduct = () => {
                   autoComplete="off"
                   placeholder="Enter your product title"
                   {...register("title", { required: true, maxLength: 100 })}
-                  className={`w-full form-input rounded-md ${
+                  className={`w-full form-input rounded-md bg-gray-200 p-2 ${
                     watch("title")?.length > 100 &&
                     "focus:border-red-500 focus:ring-1 focus:ring-red-500"
                   }`}
@@ -148,10 +152,47 @@ const AddNewProduct = () => {
                   autoComplete="off"
                   placeholder="Enter your product status or promo information"
                   {...register("status", { required: false, maxLength: 100 })}
-                  className={`w-full form-input rounded-md ${
+                  className={`w-full form-input rounded-md bg-gray-200 p-2 ${
                     watch("status")?.length > 100 &&
                     "focus:border-red-500 focus:ring-1 focus:ring-red-500"
                   }`}
+                />
+              </div>
+            </div>
+
+            {/* product details */}
+            <div>
+              <label
+                htmlFor="details"
+                className="block text-sm font-medium text-gray-700"
+              >
+                {errors.details ? (
+                  <span className="text-red-500 font-medium">
+                    Product details field is required!
+                  </span>
+                ) : (
+                  <span className="flex justify-between">
+                    Product Details{" "}
+                    <span className="hover:text-gray-500">{"<="} 50000</span>{" "}
+                  </span>
+                )}
+              </label>
+              <div className="mt-1">
+                <textarea
+                  id="details"
+                  name="details"
+                  type="text"
+                  autoComplete="off"
+                  placeholder="Enter your product details"
+                  {...register("details", {
+                    required: true,
+                    maxLength: 50000,
+                  })}
+                  className={`w-full form-textarea rounded-md bg-gray-200 p-2 ${
+                    watch("details")?.length > 50000 &&
+                    "focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                  }`}
+                  rows="8"
                 />
               </div>
             </div>
@@ -169,7 +210,7 @@ const AddNewProduct = () => {
                 ) : (
                   <span className="flex justify-between">
                     Product description{" "}
-                    <span className="hover:text-gray-500">{"<="} 2000</span>{" "}
+                    <span className="hover:text-gray-500">{"<="} 20000</span>{" "}
                   </span>
                 )}
               </label>
@@ -182,10 +223,10 @@ const AddNewProduct = () => {
                   placeholder="Enter your product description"
                   {...register("description", {
                     required: true,
-                    maxLength: 2000,
+                    maxLength: 20000,
                   })}
-                  className={`w-full form-textarea rounded-md ${
-                    watch("description")?.length > 2000 &&
+                  className={`w-full form-textarea rounded-md bg-gray-200 p-2 ${
+                    watch("description")?.length > 20000 &&
                     "focus:border-red-500 focus:ring-1 focus:ring-red-500"
                   }`}
                   rows="8"
@@ -208,7 +249,7 @@ const AddNewProduct = () => {
                 ) : (
                   <span className="flex justify-between">
                     Product price{" "}
-                    <span className="hover:text-gray-500">{">="} 00</span>{" "}
+                    <span className="hover:text-gray-500">{">="} 0.00</span>{" "}
                   </span>
                 )}
               </label>
@@ -220,7 +261,7 @@ const AddNewProduct = () => {
                   autoComplete="off"
                   placeholder="Enter your product price"
                   {...register("price", { required: true, maxLength: 100 })}
-                  className={`w-full form-input rounded-md`}
+                  className={`w-full form-input rounded-md bg-gray-200 p-2`}
                 />
               </div>
             </div>
@@ -281,7 +322,7 @@ const AddNewProduct = () => {
                   autoComplete="off"
                   placeholder="Separate by , or ⎵"
                   {...register("tags", { required: false })}
-                  className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md`}
+                  className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md bg-gray-200 p-2`}
                   onKeyUp={(event) => {
                     if (event.which === 188 || event.which === 32) {
                       const tagValue = event.target.value.replace(",", "");
@@ -349,7 +390,7 @@ const AddNewProduct = () => {
                   autoComplete="off"
                   placeholder="Separate by , or ⎵"
                   {...register("allOfSizes", { required: false })}
-                  className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md`}
+                  className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md bg-gray-200 p-2`}
                   onKeyUp={(event) => {
                     console.log(event.key === " ")
                     if (event.key === " " || event.which === 32) { //event.which is depreciated
@@ -407,7 +448,7 @@ const AddNewProduct = () => {
                   id="category"
                   name="category"
                   {...register("category", { required: true })}
-                  className="w-full form-select rounded-md"
+                  className="w-full form-select rounded-md bg-gray-200 p-2"
                 >
                   {categories.map((category) => (
                     <option key={category?._id} value={category?._id}>
@@ -459,7 +500,7 @@ const AddNewProduct = () => {
                   id="subcategory"
                   name="subcategory"
                   {...register("subcategory", { required: true })}
-                  className="w-full form-select rounded-md"
+                  className="w-full form-select rounded-md bg-gray-200 p-2"
                 >
                   {subcategories.map((subcategory) => (
                     <option key={subcategory?._id} value={subcategory?._id}>
@@ -512,7 +553,7 @@ const AddNewProduct = () => {
                   id="brand"
                   name="brand"
                   {...register("brand", { required: true })}
-                  className="w-full form-select rounded-md"
+                  className="w-full form-select rounded-md bg-gray-200 p-2"
                 >
                   {brands.map((brand) => (
                     <option key={brand?._id} value={brand?._id}>
@@ -565,7 +606,7 @@ const AddNewProduct = () => {
                   id="store"
                   name="store"
                   {...register("store", { required: true })}
-                  className="w-full form-select rounded-md"
+                  className="w-full form-select rounded-md bg-gray-200 p-2"
                 >
                   {stores.map((store) => (
                     <option key={store?._id} value={store?._id}>
@@ -643,7 +684,7 @@ const AddNewProduct = () => {
                   {Object.keys(photo).length ? (
                     <input
                       type="text"
-                      className="form-input rounded-md w-full"
+                      className="form-input rounded-md w-full bg-gray-200 p-2"
                       defaultValue="Thumbnail uploaded!"
                       readOnly
                     />
@@ -659,7 +700,7 @@ const AddNewProduct = () => {
                       {...register("thumbnail", {
                         required: true,
                       })}
-                      className={`w-full form-input rounded-md`}
+                      className={`w-full form-input rounded-md bg-gray-200 p-2`}
                       onChange={(event) => {
                         const formData = new FormData();
                         formData.append("thumbnail", event.target.files[0]);
@@ -739,7 +780,7 @@ const AddNewProduct = () => {
                 {Object.keys(gallery).length ? (
                   <input
                     type="text"
-                    className="form-input rounded-md w-full"
+                    className="form-input rounded-md w-full bg-gray-200 p-2"
                     defaultValue="Gallery uploaded!"
                     readOnly
                   />
@@ -753,7 +794,7 @@ const AddNewProduct = () => {
                     autoComplete="off"
                     placeholder="Enter your product gallery"
                     {...register("gallery", { required: true })}
-                    className={`w-full form-input rounded-md`}
+                    className={`w-full form-input rounded-md bg-gray-200 p-2`}
                     onChange={(event) => {
                       const formData = new FormData();
                       for (let i = 0; i < event.target.files.length; i++) {
@@ -866,9 +907,9 @@ const AddNewProduct = () => {
           </div> */}
 
           {/* form submit button */}
-          <div>
+          <div className="text-center">
             {productCreating ? (
-              <button type="submit" className="w-full btn-primary" disabled>
+              <button type="submit" className="w-[30%] p-4 bg-green-500 text-xl" disabled>
                 <svg
                   aria-hidden="true"
                   role="status"
@@ -889,7 +930,7 @@ const AddNewProduct = () => {
                 Creating Product...
               </button>
             ) : (
-              <button type="submit" className="w-full btn-primary">
+              <button type="submit" className="w-[30%] p-4 bg-green-200 text-xl">
                 Create New Product
               </button>
             )}
@@ -899,8 +940,7 @@ const AddNewProduct = () => {
 
       {/* product alert */}
       {/* <ReloadAlert /> */}
-    </section>
-  );
+    </section>) } </> )
 };
 
 export default AddNewProduct;

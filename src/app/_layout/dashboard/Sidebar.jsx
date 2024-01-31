@@ -13,14 +13,17 @@ const Sidebar = ({toggleMenu, isOpen}) => {
   return (
     <>
       {/* overflow-x-hidden overflow-y-scroll lg:col-span-2 md:col-span-2 col-span-1 */}
-      <section className={`${isOpen ? 'w-[100%]' : 'w-[10%]'} no-scrollbar overflow-y-scroll ${isOpen ? 'lg:w-[100%]' : 'lg:w-[25%]'} ${isOpen ? 'md:w-[100%]' : 'md:w-[8%]'} bg-gray-100/70 shadow lg:p-4 md:p-4 p-2 rounded-lg transition-all`}>
+      <section className={`${isOpen ? 'w-[100%]' : 'w-[10%]'} no-scrollbar overflow-y-scroll ${isOpen ? 'lg:w-[100%]' : 'lg:w-[25%]'} ${isOpen ? 'md:w-[100%]' : 'md:w-[8%]'} bg-gray-100/70 dark:bg-gray-500/70 shadow lg:p-4 md:p-4 p-2 rounded-lg transition-all`}>
         {/* gap-y-4 */}
         <ul className="flex flex-col h-full gap-y-1">
           <li onClick={toggleMenu} className="transition-all mb-4 lg:hidden font-medium text-xs overflow-hidden text-ellipsis whitespace-nowrap">
             {isOpen ? <Cancel width="20" height="20" className={`lg:h-6 md:h-10 m-h-8 lg:w-6 md:w-10 w-8 lg:mx-0 transition-all ${isOpen ? 'ml-auto' : ''}`} />  : <Menu width="20" height="20" className={`transition-all lg:h-6 md:h-10 m-h-8 lg:w-6 md:w-10 w-8 lg:mx-0 ${isOpen ? 'ml-auto' : ''}'}`} />}
           </li>
-          <hr />
-          <li onClick={() => router.push("/")} className="transition-all font-medium text-lg overflow-hidden text-ellipsis whitespace-nowrap flex gap-x-2 items-center">
+          <li onClick={() => router.push("/")} className={`transition-all font-medium text-lg overflow-hidden text-ellipsis whitespace-nowrap flex gap-x-2 items-center hover:underline ${
+                  pathname.includes('/')
+                    ? "border-l-2 pl-2 text-slate-500"
+                    : null
+                }`}>
             <HiChartPie width="20" height="20" className="lg:h-6 md:h-10 h-8 lg:w-6 md:w-10 w-8 max-w-fit lg:mx-0 md:mx-auto" />
             <span className={`${isOpen ? 'inline-block' : 'hidden'}`}>{" "}</span>
             <span
@@ -29,7 +32,6 @@ const Sidebar = ({toggleMenu, isOpen}) => {
               Dashboard
             </span>
           </li>
-          <hr />
 
           {dashboardRoutes.map((dashboardRoute, index) => {
             return(

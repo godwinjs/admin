@@ -29,6 +29,7 @@ const UpdateProduct = ({id}) => {
   const {
     title,
     description,
+    details,
     price,
     store,
     subcategory,
@@ -49,6 +50,7 @@ const UpdateProduct = ({id}) => {
     defaultValues: {
       title,
       description,
+      details,
       price,
       store: store?._id,
       subcategory: subcategory?._id,
@@ -94,6 +96,7 @@ const UpdateProduct = ({id}) => {
     reset({
       title,
       description,
+      details,
       price,
       store: store?._id,
       subcategory: subcategory?._id,
@@ -109,6 +112,7 @@ const UpdateProduct = ({id}) => {
     reset,
     title,
     description,
+    details,
     price,
     store,
     subcategory,
@@ -196,14 +200,52 @@ const UpdateProduct = ({id}) => {
                         autoComplete="off"
                         placeholder="Enter your product title"
                         {...register("title", { maxLength: 100 })}
-                        className={`dark:text-gray-700 w-full form-input rounded-md ${
+                        className={`w-full form-input rounded-md ${
                           watch("title")?.length > 100 &&
                           "focus:border-red-500 focus:ring-1 focus:ring-red-500"
                         }`}
                       />
                     </div>
                   </div>
-
+                  
+                  {/* product details */}
+                  <div>
+                    <label
+                      htmlFor="details"
+                      className="block text-sm font-medium dark:text-gray-700"
+                    >
+                      {errors.description ? (
+                        <span className="text-red-500 font-medium">
+                          Product details field is required!
+                        </span>
+                      ) : (
+                        <span className="flex justify-between">
+                          Product details{" "}
+                          <span className="hover:text-gray-500">
+                            {"<="} 50000
+                          </span>{" "}
+                        </span>
+                      )}
+                    </label>
+                    <div className="mt-1">
+                      <textarea
+                        id="details"
+                        name="details"
+                        type="text"
+                        autoComplete="off"
+                        placeholder="Enter your product details"
+                        {...register("details", {
+                          maxLength: 50000,
+                        })}
+                        className={`w-full form-textarea rounded-md ${
+                          watch("details")?.length > 50000 &&
+                          "focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                        }`}
+                        rows="8"
+                      />
+                    </div>
+                  </div>
+                      
                   {/* product description */}
                   <div>
                     <label
@@ -233,7 +275,7 @@ const UpdateProduct = ({id}) => {
                         {...register("description", {
                           maxLength: 2000,
                         })}
-                        className={`w-full form-textarea dark:text-gray-700 rounded-md ${
+                        className={`w-full form-textarea rounded-md ${
                           watch("description")?.length > 2000 &&
                           "focus:border-red-500 focus:ring-1 focus:ring-red-500"
                         }`}

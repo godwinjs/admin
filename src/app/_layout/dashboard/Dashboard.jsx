@@ -15,7 +15,7 @@ const Dashboard = ({children}) => {
         <section className="inline-flex gap-3 w-full h-full ">
           <Sidebar toggleMenu={toggleMenu} isOpen={isOpen} />
           {/* lg:col-span-10 md:col-span-10 col-span-11 */}
-          <div className="bg-gray-100 rounded-lg p-4 overflow-x-hidden overflow-y-scroll w-full h-full no-scrollbar shadow scroll-smooth transition-all">
+          <div className="bg-gray-100 dark:bg-gray-500 rounded-lg p-4 overflow-x-hidden overflow-y-scroll w-full h-full no-scrollbar shadow scroll-smooth transition-all">
             {children}
           </div>
         </section>
