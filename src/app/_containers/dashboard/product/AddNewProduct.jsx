@@ -393,7 +393,7 @@ const AddNewProduct = () => {
                   {...register("allOfSizes", { required: false })}
                   className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md bg-gray-200 p-2`}
                   onKeyDown={(event) => {
-                    console.log(event.key === " ")
+                    window.alert(event.key)
                     if (event.key === " " || event.key === ",") { //event.which is depreciated
                       const sizesValue = event.target.value.replace(",", "");
                       setAllOfSizes([...allOfSizes, sizesValue]);
