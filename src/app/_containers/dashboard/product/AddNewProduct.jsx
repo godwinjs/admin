@@ -392,13 +392,20 @@ const AddNewProduct = () => {
                   placeholder="Separate by , or ⎵"
                   {...register("allOfSizes", { required: false })}
                   className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md bg-gray-200 p-2`}
-                  onKeyDown={(event) => {
-                    console.log(event.nativeEvent.key)
-                    window.alert(event)
-                    if (event.key === " " || event.key === ",") { //event.which is depreciated
-                      const sizesValue = event.target.value.replace(",", "");
+                  onKeyDown={(e) => {
+                    var getKeyCode = function (str) {
+                      return str.charCodeAt(str.length - 1);
+                    }
+                    console.log(e.nativeEvent.key)
+                    var kCd = e.key || e.code;
+                    if(kCd == 0 || kCd == 229){
+                      kCd = getKeyCode(this.value);
+                      window.alert(kCd)
+                    }
+                    if (e.key === " " || e.key === ",") { //event.which is depreciated
+                      const sizesValue = e.target.value.replace(",", "");
                       setAllOfSizes([...allOfSizes, sizesValue]);
-                      event.target.value = "";
+                      e.target.value = "";
                     }
                   }}
                   readOnly={allOfSizes?.length >= 10}
