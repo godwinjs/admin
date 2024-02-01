@@ -14,6 +14,7 @@ import AddNewCategory from "../../_containers/dashboard/category/AddNewCategory"
 import AddNewProduct from "../../_containers/dashboard/product/AddNewProduct";
 import AddNewStore from "../../_containers/dashboard/store/AddNewStore";
 import AddNewSubcategory from "../../_containers/dashboard/subcategory/AddNewSubcategory";
+import WebSettings from "../../_containers/dashboard/settings/WebSettings"
 // import AddNewUser from "../../_containers/dashboard/AddNewUser";
 import NotFound from "../../_containers/NotFound"
 
@@ -50,6 +51,8 @@ export default function AccountPages({params}) {
             return <Dashboard><AddNewStore /></Dashboard>
         case "add-new-subcategory":
             return <Dashboard><AddNewSubcategory /></Dashboard>
+        case "web-settings":
+            return <Dashboard><WebSettings /></Dashboard>
         default:
             return <NotFound />
             // redirect("/not-found")

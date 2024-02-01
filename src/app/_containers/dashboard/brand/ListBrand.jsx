@@ -28,7 +28,7 @@ const ListBrand = () => {
 
   return (
     <>
-      {displayingBrands ? (
+      { displayingBrands ? (
         <DashboardLoading />
       ) : brands?.length ? (
         <div className="flex flex-col">
