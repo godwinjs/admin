@@ -92,7 +92,7 @@ const WebSettings = () => {
             <section className="grid grid-cols-12 gap-8">
                 <form className="col-span-12" onSubmit={handleSubmit(handleChangeWebSettingsForm)}>
                     <div className="grid grid-cols-1 gap-y-4">
-                      <div className="grid grid-cols-2 gap-y-8 gap-x-4 bg-white p-4 rounded-md">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-8 lg:gap-x-4 bg-white p-4 rounded-md">
                         {/* homepage meta title */}
                         <div>
                           <label
