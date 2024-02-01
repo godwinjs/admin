@@ -384,7 +384,7 @@ const AddNewProduct = () => {
                     </button>
                   </span>
                 ))}
-                <input
+                <textarea
                   id="allOfSizes"
                   name="allOfSizes"
                   type="text"
