@@ -391,22 +391,10 @@ const AddNewProduct = () => {
                   autoComplete="off"
                   placeholder="Press enter to seperate..."
                   {...register("allOfSizes", { required: false })}
-                  className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md bg-gray-200 p-2`}
+                  className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md bg-gray-200 p-0 lg:p-2`}
                   onKeyDown={(e) => {
-                    
-                    var getKeyCode = function (str) {
-                      return str.charCodeAt(str.length - 1);
-                    }
-                    window.alert(e.key)
-                    // var kCd = e.key || e.code;
-                    // if(kCd == 0 || kCd == 229){
-                      // window.alert(e.nativeEvent.key)
-                      // window.alert(e.keyCode)
-                      // window.alert(`${e.keyCode}`.charCodeAt(0))
-                      // window.event(e.originalEvent.data)
-                    // }
 
-                    if (e.key === " " || e.key === ",") { //event.which is depreciated
+                    if (e.key === " " || e.key === "," || e.key === "Enter") { //event.which is depreciated
                       const sizesValue = e.target.value.replace(",", "");
                       setAllOfSizes([...allOfSizes, sizesValue]);
                       e.target.value = "";
