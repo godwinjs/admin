@@ -389,7 +389,7 @@ const AddNewProduct = () => {
                   name="allOfSizes"
                   type="text"
                   autoComplete="off"
-                  placeholder="Separate by , or ⎵"
+                  placeholder="Press enter to seperate..."
                   {...register("allOfSizes", { required: false })}
                   className={`w-full border-transparent focus:border-transparent focus:ring-transparent rounded-md bg-gray-200 p-2`}
                   onKeyDown={(e) => {
@@ -397,7 +397,7 @@ const AddNewProduct = () => {
                     var getKeyCode = function (str) {
                       return str.charCodeAt(str.length - 1);
                     }
-                    // console.log(e.keyCode)
+                    console.log(e.key)
                     // var kCd = e.key || e.code;
                     // if(kCd == 0 || kCd == 229){
                       // window.alert(e.nativeEvent.key)
