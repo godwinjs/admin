@@ -397,7 +397,7 @@ const AddNewProduct = () => {
                     var getKeyCode = function (str) {
                       return str.charCodeAt(str.length - 1);
                     }
-                    console.log(e.key)
+                    window.alert(e.key)
                     // var kCd = e.key || e.code;
                     // if(kCd == 0 || kCd == 229){
                       // window.alert(e.nativeEvent.key)
