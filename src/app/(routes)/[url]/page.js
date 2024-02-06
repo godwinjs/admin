@@ -9,12 +9,13 @@ import Product from "../../_containers/dashboard/product/ListProduct";
 import Store from "../../_containers/dashboard/store/ListStore";
 import Subcategory from "../../_containers/dashboard/subcategory/ListSubcategory";
 import User from "../../_containers/dashboard/ListUser";
+import Settings from "../../_containers/dashboard/settings/listSettings"
 import AddNewBrand from "../../_containers/dashboard/brand/AddNewBrand";
 import AddNewCategory from "../../_containers/dashboard/category/AddNewCategory";
 import AddNewProduct from "../../_containers/dashboard/product/AddNewProduct";
 import AddNewStore from "../../_containers/dashboard/store/AddNewStore";
 import AddNewSubcategory from "../../_containers/dashboard/subcategory/AddNewSubcategory";
-import WebSettings from "../../_containers/dashboard/settings/WebSettings"
+import AddNewSettings from "../../_containers/dashboard/settings/AddNewSettings"
 // import AddNewUser from "../../_containers/dashboard/AddNewUser";
 import NotFound from "../../_containers/NotFound"
 
@@ -39,6 +40,8 @@ export default function AccountPages({params}) {
             return <Dashboard><Subcategory /></Dashboard>
         case "list-user":
             return <Dashboard><User /></Dashboard>
+        case "list-settings":
+            return <Dashboard><Settings /></Dashboard>
     // case "add-new-user":
     //     return <Dashboard><AddNewUser /></Dashboard>
         case "add-new-brand":
@@ -51,8 +54,8 @@ export default function AccountPages({params}) {
             return <Dashboard><AddNewStore /></Dashboard>
         case "add-new-subcategory":
             return <Dashboard><AddNewSubcategory /></Dashboard>
-        case "web-settings":
-            return <Dashboard><WebSettings /></Dashboard>
+        case "add-new-settings":
+            return <Dashboard><AddNewSettings /></Dashboard>
         default:
             return <NotFound />
             // redirect("/not-found")
