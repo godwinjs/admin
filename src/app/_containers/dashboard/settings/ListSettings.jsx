@@ -3,48 +3,44 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import {
-  useDisplayProductsQuery,
-  useRemoveProductMutation,
-} from "../../../../redux/features/product/productApi";
+import { useDisplaySettingsQuery, useRemoveSettingsMutation } from "../../../../redux/features/settings/settingsApi";
 
 import DashboardLoading from "../../../_components/loading/DashboardLoading";
 import LazyLoadingImage from "../../../_components/LazyLoadingImage";
 import DashboardInlineLoading from "../../../_components/loading/DashboardInlineLoading";
 import TableWarning from "../../../_components/dashboard/TableWarning";
 
-const ListProduct = () => {
+const ListSettings = () => {
   const router = useRouter();
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
-  const { data: productsData, isLoading: displayingProducts, refetch  } =
-    useDisplayProductsQuery({
+  const { data: settingsData, isLoading: displayingSettings, refetch  } =
+  useDisplaySettingsQuery({
       page,
       limit,
     });
-  const [removeProduct, { isLoading: removingProduct }] =
-    useRemoveProductMutation();
+  const [removeSettings, { isLoading: removingSettings }] =
+  useRemoveSettingsMutation();
 
-  const products = productsData?.data || [];
-  const count = productsData?.count || 0;
+  const settings = settingsData?.data || [];
+  const count = settingsData?.count || 0;
   useEffect(() => {
     refetch()
   }, [])
-  console.log(products)
 
   return (
     <>
-      {displayingProducts ? (
+        {/* Add new settings button */}
+        <div className="text-center">
+            <button onClick={() => router.push(process.env.NEXT_PUBLIC_ORIGIN_URL + "add-new-settings")} className="w-[50%] p-4 bg-green-200 lg:text-xl text-xs">
+                Add New Settings
+            </button>
+        </div>
+      {displayingSettings ? (
         <DashboardLoading />
-      ) : products?.length ? (
+      ) : settings?.length ? (
         <div>
-            {/* Add new settings button */}
-            <div className="text-center">
-                <button onClick={() => router.push(process.env.NEXT_PUBLIC_ORIGIN_URL + "add-new-settings")} className="w-[50%] p-4 bg-green-200 lg:text-xl text-xs">
-                    Add New Settings
-                </button>
-            </div>
             <div className="flex flex-col">
 
             <div className="-m-1.5 overflow-x-auto">
@@ -69,7 +65,7 @@ const ListProduct = () => {
                             scope="col"
                             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
                         >
-                            Price ($)
+                            Currency
                         </th>
                         <th
                             scope="col"
@@ -104,77 +100,53 @@ const ListProduct = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map(
+                        {/* ///////////////////////// */}
+                        {settings.map(
                         ({
                             _id,
-                            thumbnail,
                             title,
-                            subcategory,
-                            brand,
-                            store,
-                            price,
-                            gallery,
+                            currency,
                         }) => (
                             <tr
                             key={_id}
                             className="odd:bg-white even:bg-gray-100 hover:odd:bg-gray-100"
                             >
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                                <LazyLoadingImage
-                                src={thumbnail?.url}
-                                alt={thumbnail?.public_id}
-                                className={
-                                    "h-10 w-10 object-cover object-center rounded-full border-2 border-cyan-500"
-                                }
-                                height={"40"}
-                                width={"40"}
-                                />
+                                image
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                 {title}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                {price}
+                                {currency}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                 <div className="flex -space-x-4">
-                                {gallery?.map((image) => (
-                                    <LazyLoadingImage
-                                    key={Math.random() * 100 + image?.public_id}
-                                    src={image?.url}
-                                    alt={image?.public_id}
-                                    className={
-                                        "h-10 w-10 object-cover object-center rounded-full border-2 border-cyan-500"
-                                    }
-                                    height={"40"}
-                                    width={"40"}
-                                    />
-                                ))}
                                 </div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                {subcategory?.title}
+                                {"subcategory?.title"}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                {brand?.title}
+                                {"brand?.title"}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                {store?.title}
+                                {"store?.title"}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                {removingProduct ? (
+                                {removingSettings ? (
                                 <DashboardInlineLoading />
                                 ) : (
                                 <>
                                     <Link
                                     className="text-green-500 hover:text-green-700"
-                                    href={`/update-product/${_id}`}
+                                    href={`/update-settings/${_id}`}
                                     >
                                     Update
                                     </Link>
                                     <span
                                     className="text-red-500 hover:text-red-700 ml-4 cursor-pointer"
-                                    onClick={() => removeProduct(_id)}
+                                    onClick={() => removeSettings(_id)}
                                     >
                                     Delete
                                     </span>
@@ -247,10 +219,10 @@ const ListProduct = () => {
             </div>
         </div>
       ) : (
-        <TableWarning title={"product"} />
+        <TableWarning title={"settings"} />
       )}
     </>
   );
 };
 
-export default ListProduct;
+export default ListSettings;

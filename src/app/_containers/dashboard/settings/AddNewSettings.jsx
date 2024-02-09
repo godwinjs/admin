@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useCreateProductMutation } from "../../../../redux/features/product/productApi";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
@@ -9,10 +8,8 @@ import {
   useUploadGalleryMutation,
   useUploadPhotoMutation,
 } from "../../../../redux/features/upload/uploadApi";
-import { useDisplaySubcategoriesQuery } from "../../../../redux/features/subcategory/subcategoryApi";
-import { useDisplayCategoriesQuery } from "../../../../redux/features/category/categoryApi";
-import { useDisplayBrandsQuery } from "../../../../redux/features/brand/brandApi";
-import { useDisplayStoresQuery } from "../../../../redux/features/store/storeApi";
+import { useCreateSettingsMutation } from "../../../../redux/features/settings/settingsApi"
+// import { useCreateProductMutation } from "../../../../redux/features/product/productApi";
 
 import DashboardLoading from "../../../_components/loading/DashboardLoading"
 
@@ -28,73 +25,43 @@ const addNewSettings = () => {
   } = useForm();
 
   // server side credentials
-  const [createProduct, { isLoading: productCreating }] =
-    useCreateProductMutation();
-  const [uploadProductThumbnail, { isLoading: thumbnailUploading }] =
-    useUploadPhotoMutation();
-  const [uploadGallery, { isLoading: galleryUploading }] =
-    useUploadGalleryMutation();
-  const { data: subcategoriesData, isLoading: displayingSubcategories } =
-    useDisplaySubcategoriesQuery({ page: 0, limit: 0 });
-    const { data: categoriesData, isLoading: displayingCategories } =
-    useDisplayCategoriesQuery({ page: 0, limit: 0 });
-  const { data: brandsData, isLoading: displayingBrands } =
-    useDisplayBrandsQuery({ page: 0, limit: 0 });
-  const { data: storeData, isLoading: displayingStores } =
-    useDisplayStoresQuery({ page: 0, limit: 0 });
-
-  const subcategories = subcategoriesData?.data || [];
-  const categories = categoriesData?.data || [];
-  const brands = brandsData?.data || [];
-  const stores = storeData?.data || [];
+  const [createSetting, { isLoading: settingsCreating }] =
+  useCreateSettingsMutation();
 
   // upload credentials from state
-  const { photo, gallery } = useSelector((state) => state.upload);
-  const [tags, setTags] = useState([]);
-  const [allOfSizes, setAllOfSizes] = useState([]);
   const [ isReload, setIsReload ] = useState(false);
   const [settings, setSettings ] = useState("")
 
   useEffect(() => {
-    console.log(document.getElementById("settings")[0].value)
     if(isReload){
       window.location.reload();
     }
 
   }, [isReload])
-
-
-  const remove = (type, selectedTag) => {
-    switch(type) {
-      case 'tags':
-        setTags(tags.filter((tag) => tag !== selectedTag));
-        break;
-      case 'sizes':
-        setAllOfSizes(allOfSizes.filter((size) => size !== selectedTag));
-    }
-  }
   
   // submit add product form
   const handleChangeSettingsForm = (data) => {
+    data.sid = settings;
     // data.tags = tags;
     // data.thumbnail = photo;
     // data.gallery = gallery;
     // data.allOfSizes = allOfSizes;
     console.log(data)
-    // createProduct(data);
+    createSetting(data);
     // reset();
-    // toast.success(`${data.title} Product Added`);
+    toast.success(`${data.title} Settings Added`);
     
     //still handle when there's an error
     // setTimeout( () => setIsReload(true), 2000);
   };
+
   const homepageSettings = () => {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-8 lg:gap-x-4 bg-white p-4 rounded-md">
         {/* homepage meta title */}
         <div>
           <label
-            htmlFor="hm_title"
+            htmlFor="title"
             className="block text-sm font-medium text-gray-700"
           >
             {errors.title ? (
@@ -110,12 +77,12 @@ const addNewSettings = () => {
           </label>
           <div className="mt-1">
             <input
-              id="hm_title"
-              name="hm_title"
+              id="title"
+              name="title"
               type="text"
               autoComplete="off"
               placeholder="Enter your homepage meta title"
-              {...register("hm_title", { required: true, maxLength: 100 })}
+              {...register("title", { required: true, maxLength: 100 })}
               className={`w-full form-input rounded-md bg-gray-200 p-2 ${
                 watch("title")?.length > 100 &&
                 "focus:border-red-500 focus:ring-1 focus:ring-red-500"
@@ -178,6 +145,7 @@ const addNewSettings = () => {
     )
   }
   const allSettings = ["homepage", "login", "signup"];
+
   const handleSettingsChange = (e) => {
     setSettings(e.target.value)
   }
@@ -206,7 +174,7 @@ const addNewSettings = () => {
 
                     {/* form submit button */}
                     <div className="text-center">
-                      {productCreating ? (
+                      {settingsCreating ? (
                         <button type="submit" className="w-[30%] p-4 bg-green-500 text-xl" disabled>
                           <svg
                             aria-hidden="true"

@@ -9,7 +9,7 @@ import Product from "../../_containers/dashboard/product/ListProduct";
 import Store from "../../_containers/dashboard/store/ListStore";
 import Subcategory from "../../_containers/dashboard/subcategory/ListSubcategory";
 import User from "../../_containers/dashboard/ListUser";
-import Settings from "../../_containers/dashboard/settings/listSettings"
+import Settings from "../../_containers/dashboard/settings/ListSettings"
 import AddNewBrand from "../../_containers/dashboard/brand/AddNewBrand";
 import AddNewCategory from "../../_containers/dashboard/category/AddNewCategory";
 import AddNewProduct from "../../_containers/dashboard/product/AddNewProduct";

@@ -1,54 +1,54 @@
 import apiSlice from "../api/apiSlice";
 
-const productApi = apiSlice.injectEndpoints({
+const settingsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    // add new setting
-    createSetting: builder.mutation({
+    // add new settings
+    createSettings: builder.mutation({
       query: (data) => ({
-        url: "api/setting/create",
+        url: "api/settings/create",
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Setting"],
+      invalidatesTags: ["Settings"],
     }),
 
     // get all settings
     displaySettings: builder.query({
       query: ({ page, limit }) => ({
-        url: `api/setting/all?page=${page}&limit=${limit}`,
+        url: `api/settings/all?page=${page}&limit=${limit}`,
         method: "GET",
       }),
-      providesTags: ["Setting"],
+      providesTags: ["Settings"],
     }),
 
     // get setting
     displaySetting: builder.query({
       query: (id) => ({
-        url: `api/setting/${id}`,
+        url: `api/settings/${id}`,
         method: "GET",
       }),
-      providesTags: ["Setting"],
+      providesTags: ["Settings"],
     }),
 
     // update setting
-    updateSetting: builder.mutation({
+    updateSettings: builder.mutation({
       query: ({pid, settingsData}) => ({
-        url: `api/setting/${pid}`,
+        url: `api/settings/${pid}`,
         method: "PATCH",
         body: settings
         
         +Data,
       }),
-      invalidatesTags: ["Setting"],
+      invalidatesTags: ["Settings"],
     }),
 
     // delete setting
-    removeProduct: builder.mutation({
+    removeSettings: builder.mutation({
       query: (id) => ({
-        url: `api/setting/${id}`,
+        url: `api/settings/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Setting"],
+      invalidatesTags: ["Settings"],
     }),
   }),
 });
@@ -57,6 +57,6 @@ export const {
   useCreateSettingsMutation,
   useDisplaySettingsQuery,
   useDisplaySettingQuery,
-  useUpdateSettingMutation,
-  useRemoveSettingMutation,
-} = productApi;
+  useUpdateSettingsMutation,
+  useRemoveSettingsMutation,
+} = settingsApi;
