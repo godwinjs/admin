@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
-import {
-  useUploadGalleryMutation,
-  useUploadPhotoMutation,
-} from "../../../../redux/features/upload/uploadApi";
 import { useCreateSettingsMutation } from "../../../../redux/features/settings/settingsApi"
-// import { useCreateProductMutation } from "../../../../redux/features/product/productApi";
 
 import DashboardLoading from "../../../_components/loading/DashboardLoading"
 
-const addNewSettings = () => {
-  const router = useRouter();
+const AddNewSettings = () => {
   // react hook form credentials
   const {
     register,
@@ -210,4 +203,4 @@ const addNewSettings = () => {
           )
 };
 
-export default addNewSettings;
+export default AddNewSettings;
