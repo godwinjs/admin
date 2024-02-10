@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
-import { useCreateSettingsMutation } from "../../../../redux/features/settings/settingsApi"
+import { useCreateSettingsMutation, useDisplaySettingsQuery } from "../../../../redux/features/settings/settingsApi"
 
 import DashboardLoading from "../../../_components/loading/DashboardLoading"
 
