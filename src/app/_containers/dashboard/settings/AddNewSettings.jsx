@@ -35,6 +35,12 @@ const AddNewSettings = () => {
   // submit add product form
   const handleChangeSettingsForm = (data) => {
     data.sid = settings;
+    // header array
+    // heading
+    // subheading
+    // btnText
+    // btnLink
+
     // data.tags = tags;
     // data.thumbnail = photo;
     // data.gallery = gallery;
