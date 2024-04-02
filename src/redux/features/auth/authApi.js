@@ -1,9 +1,9 @@
 import apiSlice from "../api/apiSlice";
-import { setUser } from "./authSlice";
+// import { setUser } from "./authSlice";
 
 const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    // signup an user
+    // signup a user
     signup: builder.mutation({
       query: (data) => ({
         url: "api/user/sign-up",
@@ -11,9 +11,9 @@ const authApi = apiSlice.injectEndpoints({
         body: data,
       }),
       invalidatesTags: ["User"],
-    }),
+    }), 
 
-    // signin an user
+    // signin a user
     signin: builder.mutation({
       query: (data) => ({
         url: "api/user/sign-in",
@@ -49,6 +49,15 @@ const authApi = apiSlice.injectEndpoints({
       providesTags: ["User"],
     }),
 
+    // display a user
+    displayUser: builder.query({
+      query: (id) => ({
+        url: `api/user/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["User"],
+    }),
+
     // forgot password
     forgotPassword: builder.mutation({
       query: (data) => ({
@@ -77,4 +86,5 @@ export const {
   useForgotPasswordMutation,
   useUpdateUserMutation,
   useDisplayUsersQuery,
+  useDisplayUserQuery
 } = authApi;

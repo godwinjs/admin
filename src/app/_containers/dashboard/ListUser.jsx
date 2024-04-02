@@ -16,8 +16,25 @@ const ListUser = () => {
     page,
     limit,
   });
-  const [disableUser, { isLoading: disablingUser }] = useUpdateUserMutation();
+  const [ disableUser, { isLoading: disablingUser }] = useUpdateUserMutation();
 
+  // updateUser({
+  //   uid: _id,
+  //   userData: { cart: [
+  //     {
+  //         _id: "65bb8d3fd3a534e6769a8776",
+  //         quantity: 2
+  //     },
+  //     {
+  //         _id: "65bb8c585f1c606f9c30d03e",
+  //         quantity: 1
+  //     },
+  //     {
+  //         _id: "658189444bd39522ca1566b2",
+  //         quantity: 2
+  //     }
+  // ] },
+  // })
   const stores = userData?.data || [];
   const count = userData?.count || 0;
 
@@ -156,11 +173,12 @@ const ListUser = () => {
                                 {status === "inactive" ? (
                                   <span
                                     className="text-green-500 hover:text-green-700 ml-4 cursor-pointer"
-                                    onClick={() =>
+                                    onClick={() => {
                                       disableUser({
                                         uid: _id,
                                         userData: { status: "active" },
                                       })
+                                    }
                                     }
                                   >
                                     Enable
@@ -168,11 +186,12 @@ const ListUser = () => {
                                 ) : (
                                   <span
                                     className="text-red-500 hover:text-red-700 ml-4 cursor-pointer"
-                                    onClick={() =>
+                                    onClick={() =>{
                                       disableUser({
                                         uid: _id,
                                         userData: { status: "inactive" },
                                       })
+                                    }
                                     }
                                   >
                                     Disable

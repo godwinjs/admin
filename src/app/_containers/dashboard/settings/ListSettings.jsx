@@ -146,7 +146,7 @@ const ListSettings = () => {
                                     </Link>
                                     <span
                                     className="text-red-500 hover:text-red-700 ml-4 cursor-pointer"
-                                    onClick={() => removeSettings(_id)}
+                                    onClick={(_id) => removeSettings(_id)}
                                     >
                                     Delete
                                     </span>

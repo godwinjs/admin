@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
-import { useCreateSettingsMutation, useDisplaySettingsQuery } from "../../../../redux/features/settings/settingsApi"
+import { useCreateSettingsMutation, useRemoveSettingsMutation } from "../../../../redux/features/settings/settingsApi"
 
 import DashboardLoading from "../../../_components/loading/DashboardLoading"
 
@@ -36,10 +36,10 @@ const AddNewSettings = () => {
   const handleChangeSettingsForm = (data) => {
     data.sid = settings;
     // header array
-    // heading
-    // subheading
-    // btnText
-    // btnLink
+      // heading
+      // subheading
+      // btnText
+      // btnLink
 
     // data.tags = tags;
     // data.thumbnail = photo;
@@ -47,7 +47,7 @@ const AddNewSettings = () => {
     // data.allOfSizes = allOfSizes;
     console.log(data)
     createSetting(data);
-    // reset();
+    reset();
     toast.success(`${data.title} Settings Added`);
     
     //still handle when there's an error
