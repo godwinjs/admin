@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import Image from "next/image"
 
 import {
   useDisplayProductQuery,
@@ -37,6 +38,8 @@ const UpdateProduct = ({id}) => {
     tags,
     thumbnail,
     gallery,
+    bestSeller,
+    expertChoice
   } = displayProduct?.data || {};
 
   // react hook form credentials
@@ -58,6 +61,8 @@ const UpdateProduct = ({id}) => {
       tags,
       thumbnail,
       gallery,
+      bestSeller,
+      expertChoice
     },
   });
 
@@ -133,6 +138,7 @@ const UpdateProduct = ({id}) => {
 
     const { productTags: _, ...productData } = data;
     updateProduct({ pid: pid, productData });
+    // console.log(data)
     toast.success(`${data.title} Product Updated`);
     //still handle when there's an error
     setTimeout( () => setIsReload(true), 3000);
@@ -624,6 +630,9 @@ const UpdateProduct = ({id}) => {
                               Thumbnail uploaded
                             </span>
                           )}
+                          <span>
+                            <Image src={thumbnail.url} alt="cloud thumbnail" width={100} height={100} />
+                          </span>
                           <span className="hover:text-gray-500">
                             {"<="} 1MB
                           </span>
@@ -723,6 +732,9 @@ const UpdateProduct = ({id}) => {
                               Gallery uploaded
                             </span>
                           )}
+                          {gallery.map((img, i) => <span key={i}>
+                            <Image src={img.url} alt="cloud thumbnail" width={100} height={100} />
+                          </span>)}
                           <span className="hover:text-gray-500">
                             {"<="} 1MB & upto 5
                           </span>
@@ -763,6 +775,59 @@ const UpdateProduct = ({id}) => {
                       )}
                     </div>
                   </div>
+                </div>
+
+                {/* product attributes */}
+                <div className="grid grid-cols-2 gap-y-8 bg-white p-4 rounded-md">
+                  
+                  {/* expert choice */}
+                  <div>
+                      <label
+                        htmlFor="expertChoice"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        {"Chosen By our Experts"}
+                      </label>
+                    
+                    <div className="mt-1">
+                      <input
+                        id="expertChoice"
+                        name="expertChoice"
+                        type="checkbox"
+                        defaultChecked={expertChoice}
+                        {...register("expertChoice")}
+                        className={`form-input rounded-md ${
+                          watch("expertChoice") &&
+                          "focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                        }`}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Best Seller */}
+                  <div>
+                      <label
+                        htmlFor="bestSeller"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        {"Best Seller"}
+                      </label>
+                    
+                    <div className="mt-1">
+                      <input
+                        id="bestSeller"
+                        name="bestSeller"
+                        type="checkbox"
+                        defaultChecked={bestSeller}
+                        {...register("bestSeller")}
+                        className={`form-input rounded-md ${
+                          watch("bestSeller") &&
+                          "focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                        }`}
+                      />
+                    </div>
+                  </div>
+
                 </div>
 
                 {/* form submit button */}

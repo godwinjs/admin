@@ -809,6 +809,57 @@ const AddNewProduct = () => {
             </div>
           </div>
 
+          {/* product attributes */}
+          <div className="grid grid-cols-2 gap-y-8 bg-white p-4 rounded-md">
+                  
+                  {/* expert choice */}
+                  <div>
+                      <label
+                        htmlFor="expertChoice"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        {"Chosen By our Experts"}
+                      </label>
+                    
+                    <div className="mt-1">
+                      <input
+                        id="expertChoice"
+                        name="expertChoice"
+                        type="checkbox"
+                        {...register("expertChoice")}
+                        className={`form-input rounded-md ${
+                          watch("expertChoice") &&
+                          "focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                        }`}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Best Seller */}
+                  <div>
+                      <label
+                        htmlFor="bestSeller"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        {"Best Seller"}
+                      </label>
+                    
+                    <div className="mt-1">
+                      <input
+                        id="bestSeller"
+                        name="bestSeller"
+                        type="checkbox"
+                        {...register("bestSeller")}
+                        className={`form-input rounded-md ${
+                          watch("bestSeller") &&
+                          "focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                        }`}
+                      />
+                    </div>
+                  </div>
+
+                </div>
+
           {/* product variants
           <div className="grid grid-cols-1 gap-y-8 bg-white p-4 rounded-md">
             {/* product variantThumbnail 
